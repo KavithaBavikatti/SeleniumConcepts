@@ -91,6 +91,16 @@ public class ElementUtil {
 		}
 	}
 	
+	public String doGetDomAttribute(By locator,String attributeName) {
+		return getElement(locator).getDomAttribute(attributeName);
+		
+	}
+	
+	public String doGetDomProperty(By locator,String propName) {
+		return getElement(locator).getDomProperty(propName);
+		
+	}
+	
 	
 	public By getLocator(String locatorType, String locatorValue) {
 
