@@ -13,6 +13,11 @@ public class ElementUtil {
 	public ElementUtil(WebDriver driver) {
 		this.driver=driver;
 	}
+	
+	private void nullCheck(CharSequence... value) {
+		if(value==null)
+			throw new RuntimeException("Value can not be null..");
+	}
 
 	public WebElement getElement(By locator) {
 		return driver.findElement(locator);
@@ -22,11 +27,7 @@ public class ElementUtil {
 	public  List<WebElement> getElements(By locator){
 		return driver.findElements(locator);
 	}
-	
-	public void doSendKeys(By locator,String value) {
-		 getElement(locator).sendKeys(value);;
-		
-	}
+
 	
 	public void doClick(By locator) {
 		 getElement(locator).click();
@@ -46,7 +47,14 @@ public class ElementUtil {
 		getElement(getLocator(locatorType, locatorValue)).click();
 	}	
 	
-	public  void doSendKeys(String locatorType, String locatorValue, String value) {
+	
+	public void doSendKeys(By locator,CharSequence... value) {
+		 nullCheck(value);
+		 getElement(locator).sendKeys(value);		
+	}
+	
+	public  void doSendKeys(String locatorType, String locatorValue, CharSequence... value) {
+		nullCheck(value);
 		getElement(getLocator(locatorType, locatorValue)).sendKeys(value);
 	}
 	
